@@ -124,6 +124,10 @@ cd ~/github/pihpsdr
 LINUX/libinstall.sh
 """
 
+RECENT_FW = r"""
+~/github/Saturn/scripts/find-bin.sh
+"""
+
 def disable_ui():
     print("Disabling UI...")
     for widget in frame.winfo_children():  # Iterate over the frame's children
@@ -228,6 +232,10 @@ def install_pihpsdr_libs():
     print("Install piHPSDR libs button was clicked.")
     run_command_in_terminal(PIHPSDR_LIBS)
 
+def recent_fw():
+    print("Recent firmware button was clicked.")
+    run_command_in_terminal(RECENT_FW)
+
 # Adjust button width to fit two columns
 button_config = {"width": 32, "height": 2, "font": ("Arial", 14)}
 
@@ -250,6 +258,7 @@ buttons = [
     ("Install G2 config.txt", g2_config),
     ("Install G2U7 config.txt", g2u7_config),
     ("Install G2U8 config.txt", g2u8_config),
+    ("Show most recent firmware", recent_fw),
 ]
 
 # Create and place buttons in two columns
