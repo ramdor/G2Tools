@@ -135,6 +135,10 @@ sudo udevadm control --reload-rules && sudo udevadm trigger
 echo Performanc mode now enabled.
 """
 
+G2_RULES_COMMAND = r"""
+~/github/Saturn/rules/install-rules.sh
+"""
+
 def disable_ui():
     print("Disabling UI...")
     for widget in frame.winfo_children():  # Iterate over the frame's children
@@ -201,7 +205,7 @@ def build_install_xdma():
 
 def make_all_g2():
     print("Make All G2 Apps button was clicked.")
-    run_command_in_terminal(MAKE_G2_COMMAND)
+    run_command_in_terminal(MAKE_G2_COMMAND + G2_RULES_COMMAND)
 
 def make_pihpsdr():
     print("Make piHPSDR button was clicked.")
@@ -259,7 +263,7 @@ buttons = [
     ("Update G2 & piHPSDR GitHub Repos", update_github_repos),
     ("Install Libraries", install_libs),
     ("Build & Install XDMA Drivers", build_install_xdma),
-    ("Make All G2 Apps", make_all_g2),
+    ("Make All G2 Apps + Rules", make_all_g2),
     ("Install piHPSDR Libraries", install_pihpsdr_libs),
     ("Make piHPSDR", make_pihpsdr),
     ("Copy Desktop Icons", copy_desktop_icons),
