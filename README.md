@@ -1,5 +1,7 @@
 # Initial setup
 
+Note: all of these scripts/shortcuts used by the tools assume the user is ```pi``` and the home dir would be ```/home/pi```
+
 ### 1) Clone the repo
 ```
 cd ~
