@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=P2App Service Controller
+Exec=python3 /home/pi/p2app_service.py
+Icon=/usr/share/pixmaps/obconf.png
+Terminal=false
+Categories=Utility;
+Name[en_US]=P2App Service Controller
+GenericName=P2App Service Controller

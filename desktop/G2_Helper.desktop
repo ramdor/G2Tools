@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=G2 Helper
+Exec=python3 /home/pi/g2_helper.py
+Icon=/usr/share/pixmaps/obconf.png
+Terminal=false
+Categories=Utility;
+Name[en_US]=G2_Helper
+GenericName=G2 Helper
+Name[en_GB]=G2 Helper
