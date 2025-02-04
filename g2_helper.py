@@ -6,7 +6,7 @@ import os
 
 root = tk.Tk()
 root.title("G2 Helper - MW0LGE")
-root.geometry("680x480")  # Increased height to fit new button
+root.geometry("680x512")  # Increased height to fit new button
 root.resizable(False, False)
 
 # Warning Label
@@ -119,6 +119,11 @@ G2U8_CONFIG_TXT = r"""
 echo Install G2 Ultra 8 inch screen config.txt
 """
 
+PIHPSDR_LIBS = r"""
+cd ~/github/pihpsdr
+LINUX/libinstall.sh
+"""
+
 def disable_ui():
     print("Disabling UI...")
     for widget in frame.winfo_children():  # Iterate over the frame's children
@@ -181,7 +186,7 @@ def install_libs():
 
 def build_install_xdma():
     print("Build & Install XDMA button was clicked.")
-    run_command_in_terminal(BUILD_XDMA_COMMANDS)
+    run_command_in_terminal(BUILD_XDMA_COMMAND)
 
 def make_all_g2():
     print("Make All G2 Apps button was clicked.")
@@ -219,6 +224,10 @@ def g2u8_config():
     print("G2U8 config.txt button was clicked.")
     run_command_in_terminal(G2U8_CONFIG_TXT)
 
+def install_pihpsdr_libs():
+    print("Install piHPSDR libs button was clicked.")
+    run_command_in_terminal(PIHPSDR_LIBS)
+
 # Adjust button width to fit two columns
 button_config = {"width": 32, "height": 2, "font": ("Arial", 14)}
 
@@ -232,6 +241,7 @@ buttons = [
     ("Install Libraries", install_libs),
     ("Build & Install XDMA Drivers", build_install_xdma),
     ("Make All G2 Apps", make_all_g2),
+    ("Install piHPSDR Libraries", install_pihpsdr_libs),
     ("Make piHPSDR", make_pihpsdr),
     ("Copy Desktop Icons", copy_desktop_icons),
     ("AutoStart Front Panel (piHPSDR)", autostart_fp),
