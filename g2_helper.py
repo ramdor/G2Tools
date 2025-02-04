@@ -129,6 +129,7 @@ RECENT_FW = r"""
 """
 
 PERFORMANCE = r"""
+echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor > /dev/null
 sudo cp ~/github/G2Tools/99-performance-governor.rules /etc/udev/rules.d
 sudo udevadm control --reload-rules && sudo udevadm trigger
 echo Performanc mode now enabled.
