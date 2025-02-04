@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=G2 Helper
-Exec=python3 /home/pi/g2_helper.py
+Exec=python3 ~/github/G2Tools/g2_helper.py
 Icon=/usr/share/pixmaps/obconf.png
 Terminal=false
 Categories=Utility;

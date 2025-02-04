@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=P2App Service Controller
-Exec=python3 /home/pi/p2app_service.py
+Exec=python3 ~/github/G2Tools/p2app_service.py
 Icon=/usr/share/pixmaps/obconf.png
 Terminal=false
 Categories=Utility;
