@@ -3,6 +3,7 @@
 
 import tkinter as tk
 import subprocess
+import os
 
 SERVICE_FILE = "/etc/systemd/system/p2app.service"
 
@@ -32,8 +33,9 @@ def disable_autostart():
 
 def check_service():
     global check_after_id
+
     status = subprocess.run(["systemctl", "is-active", "p2app.service"], capture_output=True, text=True).stdout.strip()
-    
+
     if status == "active":
         status_label.config(text="Service is running", fg="green")
         start_btn.config(state="disabled")
@@ -44,9 +46,9 @@ def check_service():
         start_btn.config(state="normal")
         stop_btn.config(state="disabled")
         restart_btn.config(state="disabled")
-    
-    check_execstart()  # Automatically check panel state when service state changes
-    
+
+    check_execstart()
+
     check_after_id = root.after(1000, check_service)
 
 def check_autostart():
@@ -143,8 +145,16 @@ execstart_status_label = tk.Label(root, text="Checking G2 Panel Support...", fon
 execstart_status_label.pack()
 
 check_after_id = None
-check_service()
-check_autostart()
-check_execstart()
+
+if not os.path.exists(SERVICE_FILE):
+    status_label.config(text="Service not installed", fg="red")
+    autostart_status_label.config(text="Service not installed", fg="red")
+    execstart_status_label.config(text="Service not installed", fg="red")
+    for btn in [start_btn, stop_btn, restart_btn, enable_autostart_btn, disable_autostart_btn, toggle_execstart_btn]:
+        btn.config(state="disabled")
+else:
+   check_service()
+   check_autostart()
+   check_execstart()
 
 root.mainloop()
