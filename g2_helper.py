@@ -136,8 +136,7 @@ echo Performanc mode now enabled.
 """
 
 G2_RULES_COMMAND = r"""
-cd ~/github/Saturn/rules
-install-rules.sh
+~/github/Saturn/rules/install-rules.sh
 """
 
 def disable_ui():
