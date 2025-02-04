@@ -21,5 +21,6 @@ chmod +x ~/github/G2Tools/desktop/G2Tools_setup.sh
 ```
 cd ~/github/G2Tools
 git pull
+chmod +x ~/github/G2Tools/desktop/G2Tools_setup.sh
 ~/github/G2Tools/desktop/G2Tools_setup.sh
 ```
