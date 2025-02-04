@@ -17,7 +17,7 @@ chmod +x ~/github/G2Tools/desktop/G2Tools_setup.sh
 ~/github/G2Tools/desktop/G2Tools_setup.sh
 ```
 
-### 3) Update the repo
+### Future updates to the repo
 ```
 cd ~/github/G2Tools
 git pull
