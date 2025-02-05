@@ -233,11 +233,11 @@ def g2_config():
     run_command_in_terminal(G2_CONFIG_TXT)
 
 def g27_config():
-    print("G2 7""" config.txt button was clicked.")
+    print("G2 7\" config.txt button was clicked.")
     run_command_in_terminal(G27_CONFIG_TXT)
 
 def g2u8_config():
-    print("G2 Ultra 8""" config.txt button was clicked.")
+    print("G2 Ultra 8\" config.txt button was clicked.")
     run_command_in_terminal(G2U8_CONFIG_TXT)
 
 def install_pihpsdr_libs():
@@ -272,8 +272,8 @@ buttons = [
     ("AutoStart No Front Panel (p2app)", autostart_nfp),
     ("P2App as a Service", p2app_service),
     ("Install G2 config.txt", g2_config),
-    ("Install G2 7""" config.txt", g27_config),
-    ("Install G2 Ultra 8""" config.txt", g2u8_config),
+    ("Install G2 7\" config.txt", g27_config),
+    ("Install G2 Ultra 8\" config.txt", g2u8_config),
     ("Show most recent firmware", recent_fw),
     ("Enable CPU Performance mode", performance),
 ]
