@@ -102,18 +102,13 @@ dtparam=i2c_arm=on
 
 #G2 power shutdown
 dtoverlay=gpio-shutdown,gpio_pin=26
-#G2 power led
 gpio=15=op,dh
 
-#G2Ultra power shutdown
-#V1
+#G2V2 power shutdown
 #dtoverlay=gpio-shutdown,gpio_pin=26
-#V2
-#dtoverlay=gpio-shutdown,gpio_pin=26
-#G2Ultra power led
 #gpio=18=op,dh
 
-#G2Ultra Panel UART on pins 7 + 29 of 40 pin header
+#G2 Panel UART on pins 7 + 29 of 40 pin header
 #enable_uart=1
 #dtoverlay=uart3
 
