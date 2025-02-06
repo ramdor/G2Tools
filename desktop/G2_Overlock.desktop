@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=G2 Overclock
+Exec=/home/pi/github/G2Tools/G2_overclock.sh
+Icon=/usr/share/pixmaps/obconf.png
+Terminal=false
+Categories=Utility;
+Name[en_US]=G2 Overclock
+GenericName=G2 Overclock
+Name[en_GB]=G2 Overclock

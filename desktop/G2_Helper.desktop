@@ -5,6 +5,6 @@ Exec=python3 /home/pi/github/G2Tools/g2_helper.py
 Icon=/usr/share/pixmaps/obconf.png
 Terminal=false
 Categories=Utility;
-Name[en_US]=G2_Helper
+Name[en_US]=G2 Helper
 GenericName=G2 Helper
 Name[en_GB]=G2 Helper
