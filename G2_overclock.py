@@ -32,12 +32,12 @@ def apply_overclock(profile):
         found_over_voltage = False
         
         for line in lines:
-            if "arm_freq=" in line and not line.strip().startswith("#"):
+            if "arm_freq=" in line:
                 if not found_arm_freq:
                     new_lines.append(f"arm_freq={arm_freq}\n")
                     found_arm_freq = True
                 continue
-            elif "over_voltage=" in line and not line.strip().startswith("#"):
+            elif "over_voltage=" in line:
                 if not found_over_voltage:
                     new_lines.append(f"over_voltage={over_voltage}\n")
                     found_over_voltage = True
