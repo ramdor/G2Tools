@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=G2 Overclock
-Exec=/home/pi/github/G2Tools/G2_overclock.sh
+Exec=sudo python3 /home/pi/github/G2Tools/G2_overclock.py
 Icon=/usr/share/pixmaps/obconf.png
 Terminal=false
 Categories=Utility;
