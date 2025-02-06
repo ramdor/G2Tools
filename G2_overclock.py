@@ -16,9 +16,32 @@ overclock_profiles = {
 }
 
 def apply_overclock(profile):
-    """Updates the config.txt file with the selected overclock settings."""
+    """Applies the selected overclock settings after confirmation (except for 'No Overclock')."""
     arm_freq, over_voltage = overclock_profiles[profile]
-    
+
+    # Skip confirmation if "No Overclock" is selected
+    if profile != "No Overclock":
+        confirmation_message = (
+            f"You have selected: {profile}\n\n"
+            "This will apply the following settings:\n"
+            f" - arm_freq={arm_freq}\n"
+            f" - over_voltage={over_voltage}\n\n"
+        )
+
+        details_message = (
+            "Overclocking can cause instability, crashes, and potential damage to your hardware.\n"
+            "Only proceed if you understand the risks.\n\n"
+            "If you radio fails to boot, then you will need to remove the micro sd card "
+            "and edit it on another machine with an sd card reader. You need to comment "
+            "out the [arm_freq] and [over_voltage] lines using a '#'. These settings are "
+            "stored in the config.txt file which should be in the boot/bootfs partition. " 
+            "Make the changes, and save. Safely eject the sd card and replace into your radio.\n\n"
+            "Do you want to continue?"
+        )
+
+        if not messagebox.askokcancel("Confirm Overclock", confirmation_message, detail=details_message, icon="warning"):
+            return  # User canceled, do nothing
+
     try:
         # Determine which config file exists
         CONFIG_FILE = next((f for f in CONFIG_FILES if os.path.exists(f)), CONFIG_FILES[-1])
