@@ -20,6 +20,7 @@ chmod +x ~/github/G2Tools/desktop/G2Tools_setup.sh
 ### Future updates to the repo
 ```
 cd ~/github/G2Tools
+git reset --hard HEAD
 git pull
 chmod +x ~/github/G2Tools/desktop/G2Tools_setup.sh
 ~/github/G2Tools/desktop/G2Tools_setup.sh
