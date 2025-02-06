@@ -86,16 +86,27 @@ def create_gui():
     """Creates the GUI for selecting an overclock profile."""
     root = tk.Tk()
     root.title("Overclock Settings")
-    root.geometry("350x260")
+    root.geometry("350x370")
     root.resizable(False, False)
 
     # Instruction label
     tk.Label(root, text="Select Overclock Level:", font=("TkDefaultFont", 10)).pack(pady=5)
 
-    # Create buttons with labels above each
+    # Create a container frame to hold the buttons
+    container = tk.Frame(root)
+    container.pack(pady=10, padx=10, fill=tk.BOTH, expand=True)
+
     for profile, (arm_freq, over_voltage) in overclock_profiles.items():
-        tk.Label(root, text=f"arm_freq={arm_freq} | over_voltage={over_voltage}", fg="black", font=("TkDefaultFont", 8)).pack()
-        tk.Button(root, text=profile, command=lambda p=profile: apply_overclock(p)).pack(fill=tk.X, pady=5, padx=10)
+        # Create a frame to group each label and button
+        frame = tk.Frame(container, borderwidth=2, relief="groove", padx=5, pady=5)
+        frame.pack(fill=tk.X, pady=5)
+
+        # Label inside frame
+        tk.Label(frame, text=f"arm_freq={arm_freq} | over_voltage={over_voltage}",
+                 fg="black", font=("TkDefaultFont", 8)).pack(pady=2)
+
+        # Button inside frame
+        tk.Button(frame, text=profile, command=lambda p=profile: apply_overclock(p)).pack(fill=tk.X, pady=2)
 
     root.mainloop()
 
