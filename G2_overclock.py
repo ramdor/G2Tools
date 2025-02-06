@@ -10,8 +10,8 @@ CONFIG_FILES = ["/boot/firmware/config.txt", "/boot/config.txt"]
 # Overclock profiles
 overclock_profiles = {
     "No Overclock": (1500, 0),
-    "Mid Overclock": (1750, 1),
-    "High Overclock": (2000, 2),
+    "Mid Overclock": (1750, 2),
+    "High Overclock": (2000, 6),
     "Extreme Overclock (not recommended)": (2200, 6)
 }
 
