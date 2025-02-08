@@ -126,4 +126,4 @@ dtoverlay=uart3
 dtoverlay=vc4-kms-dsi-waveshare-panel,7_0_inch
 #dtoverlay=vc4-kms-dsi-waveshare-panel,8_0_inch
 
-gpu_mem=76
+gpu_mem=80
