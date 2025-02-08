@@ -6,7 +6,7 @@ import os
 
 root = tk.Tk()
 root.title("G2 Helper - MW0LGE")
-root.geometry("680x572")  # Increased height to fit new button
+root.geometry("680x544")  # Increased height to fit new button
 root.resizable(False, False)
 
 # Warning Label
