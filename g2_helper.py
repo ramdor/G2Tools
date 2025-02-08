@@ -181,6 +181,7 @@ def run_command_in_terminal(command):
     disable_ui()
 
     script_contents = f"""
+echo
 echo Script starting.... DO NOT X this window. Wait for it to finish and press a key as instructed.
 echo
 {command}
