@@ -87,7 +87,7 @@ dtoverlay=dwc2,dr_mode=host
 otg_mode=1
 
 #[cm5]
-#dtoverlay=dwc2,dr_mode=host
+dtoverlay=dwc2,dr_mode=host
 
 [all]
 #max frequency
