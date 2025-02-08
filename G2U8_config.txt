@@ -101,11 +101,11 @@ dtparam=i2c_arm=on
 #dtparam=spi=on
 
 #G2 power shutdown
-#dtoverlay=gpio-shutdown,gpio_pin=26
+#dtoverlay=gpio-shutdown,gpio_pin=26,debounce=50
 #gpio=15=op,dh
 
 #G2V2 power shutdown
-dtoverlay=gpio-shutdown,gpio_pin=26
+dtoverlay=gpio-shutdown,gpio_pin=26,debounce=50
 gpio=18=op,dh
 
 #G2 Panel UART on pins 7 + 29 of 40 pin header
@@ -123,7 +123,7 @@ dtoverlay=uart3
 #        7_0_inchC               7.0" C 1024x600
 #        7_9_inch                7.9" 400x1280
 #        8_0_inch                8.0" 1280x800
-#dtoverlay=vc4-kms-dsi-waveshare-panel,7_0_inch
-dtoverlay=vc4-kms-dsi-waveshare-panel,8_0_inch
+#dtoverlay=vc4-kms-dsi-waveshare-panel,7_0_inch,i2c_bus=10
+dtoverlay=vc4-kms-dsi-waveshare-panel,8_0_inch,i2c_bus=10
 
 gpu_mem=80
