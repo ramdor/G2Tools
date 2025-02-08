@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#MW0LGE (c)2025
+#Covered by the GNU GENERAL PUBLIC LICENSE v2. See the LICENSE file
+
 SERVICE_NAME="p2app"
 SERVICE_PATH="/etc/systemd/system/$SERVICE_NAME.service"
 

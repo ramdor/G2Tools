@@ -1,5 +1,5 @@
-# MW0LGE (c)2025
-# You may distribute/copy this to your heart's content
+#MW0LGE (c)2025
+#Covered by the GNU GENERAL PUBLIC LICENSE v2. See the LICENSE file
 
 import tkinter as tk
 import subprocess
