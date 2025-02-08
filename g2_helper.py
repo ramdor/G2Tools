@@ -4,25 +4,16 @@ import tkinter as tk
 import subprocess
 import os
 
-root = tk.Tk()
-root.title("G2 Helper - MW0LGE")
-root.geometry("680x544")  # Increased height to fit new button
-root.resizable(False, False)
-
-# Warning Label
-warning_label = tk.Label(
-    root,
-    text="⚠️ DO NOT click X on a console window. Wait for the process to finish and the\n'Press any key to close window...' prompt to show.",
-    fg="red",
-    font=("Arial", 10, "bold"),
-    justify="center"
-)
-warning_label.pack(pady=10)
-
-LOCK_FILE = "/tmp/terminal_lock"
+LOCK_FILE = "/tmp/g2_helper_terminal_lock"
 SCRIPT_FILE = "/tmp/g2_helper_script.sh"
 
-UPDATE_COMMAND = r"""
+root = tk.Tk()
+
+####################
+# Scripts
+####################
+
+UPDATE_REPOS = r"""
 mkdir -p ~/github
 cd ~/github
 
@@ -43,13 +34,13 @@ else
 fi
 """
 
-INSTALL_LIBS_COMMAND = r"""
+INSTALL_LIBS = r"""
 ~/github/Saturn/scripts/install-libraries.sh
 sudo apt-get install -y gpiod libgpiod-doc
 sudo apt-get install -y libgtk-3-dev
 """
 
-BUILD_XDMA_COMMAND = r"""
+BUILD_XDMA = r"""
 sudo apt install -y raspberrypi-kernel-headers
 sudo rmmod -s xdma
 cd ~/github/Saturn/linuxdriver/xdma
@@ -63,43 +54,43 @@ sudo udevadm control --reload-rules
 sudo udevadm trigger
 """
 
-MAKE_G2_COMMAND = r"""
+MAKE_G2 = r"""
 ~/github/Saturn/scripts/update-desktop-apps.sh
 ~/github/Saturn/scripts/update-p2app.sh
 """
 
-MAKE_PIHPSDR_COMMAND = r"""
+MAKE_PIHPSDR = r"""
 cd ~/github/pihpsdr
 make clean
 make
 """
 
-COPY_DESKTOP_ICONS_COMMAND = r"""
+COPY_DESKTOP_ICONS = r"""
 cp ~/github/Saturn/desktop/* ~/Desktop
 echo Desktop icons copied.
 """
 
-DESKTOP_AUTOSTART_FP_COMMAND = r"""
+DESKTOP_AUTOSTART_FP = r"""
 sudo cp ~/github/Saturn/scripts/front-panel-autostart /etc/xdg/lxsession/LXDE-pi/autostart
 sudo chmod 644 /etc/xdg/lxsession/LXDE-pi/autostart
 echo "Desktop Autostart front panel file copied successfully."
 """
-DESKTOP_AUTOSTART_NFP_COMMAND = r"""
+DESKTOP_AUTOSTART_NFP = r"""
 sudo cp ~/github/Saturn/scripts/no-front-panel-autostart /etc/xdg/lxsession/LXDE-pi/autostart
 sudo chmod 644 /etc/xdg/lxsession/LXDE-pi/autostart
 echo "Desktop Autostart no front panel file copied successfully."
 """
-DESKTOP_AUTOSTART_DISABLE = r"""
+DESKTOP_AUTOSTART = r"""
 sudo cp ~/github/G2Tools/no-p2app-piHPSDR-autostart /etc/xdg/lxsession/LXDE-pi/autostart
 sudo chmod 644 /etc/xdg/lxsession/LXDE-pi/autostart
 echo "Desktop Autostart disabled."
 """
 
-P2APP_SERVICE_COMMAND = r"""
+P2APP_SERVICE = r"""
 sudo ~/github/G2Tools/p2app_service.sh
 """
 
-P2APP_SERVICE_DISABLE_COMMAND = r"""
+P2APP_SERVICE_DISABLE = r"""
 sudo ~/github/G2Tools/p2app_service_undo.sh
 """
 
@@ -144,11 +135,15 @@ sudo udevadm control --reload-rules && sudo udevadm trigger
 echo Performance mode now enabled. CPU ondemand changed to performance
 """
 
-G2_RULES_COMMAND = r"""
+G2_RULES = r"""
 cd ~/github/Saturn/rules
 ./install-rules.sh
 echo Rules now installed
 """
+
+####################
+# Script execution
+####################
 
 def disable_ui():
     print("Disabling UI...")
@@ -205,41 +200,45 @@ rm {LOCK_FILE}
 
     check_lock_file()
 
+####################
+# Button clicks
+####################
+
 def update_github_repos():
     print("Update button was clicked.")
-    run_command_in_terminal(UPDATE_COMMAND)
+    run_command_in_terminal(UPDATE_REPOS)
 
 def install_libs():
     print("Install Libs button was clicked.")
-    run_command_in_terminal(INSTALL_LIBS_COMMAND)
+    run_command_in_terminal(INSTALL_LIBS)
 
 def build_install_xdma():
     print("Build & Install XDMA button was clicked.")
-    run_command_in_terminal(BUILD_XDMA_COMMAND)
+    run_command_in_terminal(BUILD_XDMA)
 
 def make_all_g2():
     print("Make All G2 Apps button was clicked.")
-    run_command_in_terminal(MAKE_G2_COMMAND + G2_RULES_COMMAND)
+    run_command_in_terminal(MAKE_G2 + G2_RULES)
 
 def make_pihpsdr():
     print("Make piHPSDR button was clicked.")
-    run_command_in_terminal(MAKE_PIHPSDR_COMMAND)
+    run_command_in_terminal(MAKE_PIHPSDR)
 
 def copy_desktop_icons():
     print("Copy Desktop Items button was clicked.")
-    run_command_in_terminal(COPY_DESKTOP_ICONS_COMMAND)
+    run_command_in_terminal(COPY_DESKTOP_ICONS)
 
 def autostart_fp():
     print("Autostart FP button was clicked.")
-    run_command_in_terminal(P2APP_SERVICE_DISABLE_COMMAND + DESKTOP_AUTOSTART_FP_COMMAND)
+    run_command_in_terminal(P2APP_SERVICE_DISABLE + DESKTOP_AUTOSTART_FP)
 
 def autostart_nfp():
     print("Autostart NFP button was clicked.")
-    run_command_in_terminal(P2APP_SERVICE_DISABLE_COMMAND + DESKTOP_AUTOSTART_NFP_COMMAND)
+    run_command_in_terminal(P2APP_SERVICE_DISABLE + DESKTOP_AUTOSTART_NFP)
 
 def p2app_service():
     print("PS2App as serivce button was clicked.")
-    run_command_in_terminal(DESKTOP_AUTOSTART_DISABLE + P2APP_SERVICE_COMMAND)
+    run_command_in_terminal(DESKTOP_AUTOSTART_DISABLE + P2APP_SERVICE)
 
 def g2_config():
     print("G2 config.txt button was clicked.")
@@ -264,6 +263,24 @@ def recent_fw():
 def performance():
     print("Performance button was clicked.")
     run_command_in_terminal(PERFORMANCE)
+
+####################
+# Main form/display
+####################
+
+root.title("G2 Helper - MW0LGE")
+root.geometry("680x544")  # Increased height to fit new button
+root.resizable(False, False)
+
+# Warning Label
+warning_label = tk.Label(
+    root,
+    text="⚠️ DO NOT click X on a console window. Wait for the process to finish and the\n'Press any key to close window...' prompt to show.",
+    fg="red",
+    font=("Arial", 10, "bold"),
+    justify="center"
+)
+warning_label.pack(pady=10)
 
 # Adjust button width to fit two columns
 button_config = {"width": 32, "height": 2, "font": ("Arial", 14)}
