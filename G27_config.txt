@@ -20,8 +20,8 @@
 
 # uncomment to force a console size. By default it will be display's size minus
 # overscan.
-#framebuffer_width=1920
-#framebuffer_height=1080
+#framebuffer_width=1280
+#framebuffer_height=720
 
 # uncomment if hdmi display is not detected and composite is being output
 #hdmi_force_hotplug=1
@@ -94,7 +94,7 @@ dtoverlay=dwc2,dr_mode=host
 force_turbo=1
 #pihpsdr controllers
 gpio=4-13,16-27=ip,pu
-#ignore_lcd=1
+ignore_lcd=1
 dtparam=i2c_vc=on
 dtparam=i2c_arm=on
 #dtparam=i2s=on
