@@ -12,7 +12,7 @@ root.resizable(False, False)
 # Warning Label
 warning_label = tk.Label(
     root,
-    text="⚠️ DO NOT click X on a console window.\nWait for the process to finish\nand the 'Press any key to close window...'\nprompt to show.",
+    text="⚠️ DO NOT click X on a console window. Wait for the process to finish and the\n'Press any key to close window...' prompt to show.",
     fg="red",
     font=("Arial", 10, "bold"),
     justify="center"
