@@ -45,7 +45,6 @@ fi
 
 INSTALL_LIBS_COMMAND = r"""
 ~/github/Saturn/scripts/install-libraries.sh
-
 sudo apt-get install -y gpiod libgpiod-doc
 sudo apt-get install -y libgtk-3-dev
 """
@@ -121,23 +120,34 @@ echo Install G2 Ultra 8 inch screen config.txt
 
 PIHPSDR_LIBS = r"""
 cd ~/github/pihpsdr
-LINUX/libinstall.sh
+./LINUX/libinstall.sh
 """
 
 RECENT_FW = r"""
 ~/github/Saturn/scripts/find-bin.sh
+echo ""
+echo "FPGA Update Instructions:"
+echo "1. If FPGA needs updating, launch flashwriter desktop app (icon on desktop)"
+echo "2. Navigate: Open file → Home → github → Saturn → FPGA"
+echo "3. Select the new .BIT file listed above"
+echo "4. Ensure 'primary' is selected"
+echo "5. Click 'Program'"
+echo ""
+echo "Note: Programming takes approximately 3 minutes"
+echo "Important: Power cycle completely after programming"
 """
 
 PERFORMANCE = r"""
 echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor > /dev/null
 sudo cp ~/github/G2Tools/99-performance-governor.rules /etc/udev/rules.d
 sudo udevadm control --reload-rules && sudo udevadm trigger
-echo Performanc mode now enabled.
+echo Performance mode now enabled. CPU ondemand changed to performance
 """
 
 G2_RULES_COMMAND = r"""
 cd ~/github/Saturn/rules
 ./install-rules.sh
+echo Rules now installed
 """
 
 def disable_ui():
@@ -170,7 +180,9 @@ def run_command_in_terminal(command):
 
     disable_ui()
 
-    script_contents = f"""\
+    script_contents = f"""
+echo Script starting.... DO NOT X this window. Wait for it to finish and press a key as instructed.
+echo
 {command}
 echo
 echo 'Press any key to close window...'
