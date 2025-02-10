@@ -68,10 +68,10 @@ def check_execstart():
         lines = file.readlines()
 
     for line in lines:
-        if line.strip() == "ExecStart=/home/pi/github/Saturn/sw_projects/P2_app/p2app -p":
+        if line.strip() == "ExecStart=/home/pi/github/Saturn/sw_projects/P2_app/p2app -p -s":
             execstart_status_label.config(text="G2 Panel Support Enabled", fg="green")
             return
-        elif line.strip() == "ExecStart=/home/pi/github/Saturn/sw_projects/P2_app/p2app":
+        elif line.strip() == "ExecStart=/home/pi/github/Saturn/sw_projects/P2_app/p2app -s":
             execstart_status_label.config(text="G2 Panel Support Disabled", fg="red")
             return
 
@@ -85,13 +85,13 @@ def toggle_execstart():
 
     new_lines = []
     for line in lines:
-        if line.strip() == "ExecStart=/home/pi/github/Saturn/sw_projects/P2_app/p2app -p":
+        if line.strip() == "ExecStart=/home/pi/github/Saturn/sw_projects/P2_app/p2app -p -s":
             new_lines.append("#" + line)  # Comment out -p version
-        elif line.strip() == "#ExecStart=/home/pi/github/Saturn/sw_projects/P2_app/p2app":
+        elif line.strip() == "#ExecStart=/home/pi/github/Saturn/sw_projects/P2_app/p2app -s":
             new_lines.append(line[1:])  # Uncomment normal version
-        elif line.strip() == "ExecStart=/home/pi/github/Saturn/sw_projects/P2_app/p2app":
+        elif line.strip() == "ExecStart=/home/pi/github/Saturn/sw_projects/P2_app/p2app -s":
             new_lines.append("#" + line)  # Comment out normal version
-        elif line.strip() == "#ExecStart=/home/pi/github/Saturn/sw_projects/P2_app/p2app -p":
+        elif line.strip() == "#ExecStart=/home/pi/github/Saturn/sw_projects/P2_app/p2app -p -s":
             new_lines.append(line[1:])  # Uncomment -p version
         else:
             new_lines.append(line)

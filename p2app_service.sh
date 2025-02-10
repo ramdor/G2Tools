@@ -26,7 +26,7 @@ Wants=network-online.target
 [Service]
 Type=simple
 #ExecStart=/home/pi/github/Saturn/sw_projects/P2_app/p2app -p -s
-ExecStart=/home/pi/github/Saturn/sw_projects/P2_app/p2app
+ExecStart=/home/pi/github/Saturn/sw_projects/P2_app/p2app -s
 Restart=always
 User=pi
 Group=pi
