@@ -81,7 +81,7 @@ sudo cp ~/github/Saturn/scripts/no-front-panel-autostart /etc/xdg/lxsession/LXDE
 sudo chmod 644 /etc/xdg/lxsession/LXDE-pi/autostart
 echo "Desktop Autostart no front panel file copied successfully."
 """
-DESKTOP_AUTOSTART = r"""
+DESKTOP_AUTOSTART_DISABLE = r"""
 sudo cp ~/github/G2Tools/no-p2app-piHPSDR-autostart /etc/xdg/lxsession/LXDE-pi/autostart
 sudo chmod 644 /etc/xdg/lxsession/LXDE-pi/autostart
 echo "Desktop Autostart disabled."
