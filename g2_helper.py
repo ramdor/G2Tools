@@ -116,7 +116,15 @@ cd ~/github/pihpsdr
 """
 
 RECENT_FW = r"""
+echo "------------------"
 ~/github/Saturn/scripts/find-bin.sh
+echo "------------------"
+echo ""
+echo "------------------"
+echo "Current version FPGA details :"
+echo ""
+~/github/Saturn/sw_projects/FPGAVersion/FPGAVersion
+echo "------------------"
 echo ""
 echo "FPGA Update Instructions:"
 echo "1. If FPGA needs updating, launch flashwriter desktop app (icon on desktop)"
