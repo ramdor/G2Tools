@@ -146,7 +146,7 @@ echo Performance mode now enabled. CPU ondemand changed to performance
 
 G2_RULES = r"""
 cd ~/github/Saturn/rules
-./install-rules.sh
+sudo ./install-rules.sh
 echo Rules now installed
 """
 
