@@ -129,7 +129,18 @@ echo ""
 echo "------------------"
 echo "Current version FPGA details :"
 echo ""
-~/github/Saturn/sw_projects/FPGAVersion/FPGAVersion
+if [ ! -f ~/github/Saturn/sw_tools/FPGAVersion/FPGAVersion ]; then
+    echo "FPGAVersion not found, building it..."
+    (
+        cd ~/github/Saturn/sw_tools/FPGAVersion &&
+        make
+    ) || {
+        echo "Failed to build FPGAVersion"
+        exit 1
+    }
+fi
+chmod +x ~/github/Saturn/sw_tools/FPGAVersion/FPGAVersion
+~/github/Saturn/sw_tools/FPGAVersion/FPGAVersion
 echo "------------------"
 echo ""
 echo "FPGA Update Instructions:"
