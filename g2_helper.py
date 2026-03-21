@@ -36,6 +36,7 @@ fi
 """
 
 INSTALL_LIBS = r"""
+sudo chmod +x ~/github/Saturn/scripts/install-libraries.sh
 ~/github/Saturn/scripts/install-libraries.sh
 sudo apt-get install -y gpiod libgpiod-doc
 sudo apt-get install -y libgtk-3-dev
@@ -56,6 +57,8 @@ sudo udevadm trigger
 """
 
 MAKE_G2 = r"""
+sudo chmod +x ~/github/Saturn/scripts/update-desktop-apps.sh
+sudo chmod +x ~/github/Saturn/scripts/update-p2app.sh
 ~/github/Saturn/scripts/update-desktop-apps.sh
 ~/github/Saturn/scripts/update-p2app.sh
 """
@@ -88,10 +91,12 @@ echo "Desktop Autostart disabled."
 """
 
 P2APP_SERVICE = r"""
+sudo chmod +x ~/github/G2Tools/p2app_service.sh
 sudo ~/github/G2Tools/p2app_service.sh
 """
 
 P2APP_SERVICE_DISABLE = r"""
+sudo chmod +x ~/github/G2Tools/p2app_service_undo.sh
 sudo ~/github/G2Tools/p2app_service_undo.sh
 """
 
@@ -116,6 +121,7 @@ cd ~/github/pihpsdr
 """
 
 RECENT_FW = r"""
+sudo chmod +x ~/github/Saturn/scripts/find-bin.sh
 echo "------------------"
 ~/github/Saturn/scripts/find-bin.sh
 echo "------------------"
@@ -145,6 +151,7 @@ echo Performance mode now enabled. CPU ondemand changed to performance
 """
 
 G2_RULES = r"""
+sudo chmod +x ~/github/Saturn/rules/install-rules.sh
 cd ~/github/Saturn/rules
 sudo ./install-rules.sh
 echo Rules now installed
