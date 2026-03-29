@@ -337,7 +337,7 @@ buttons = [
     ("AutoStart Front Panel (piHPSDR)", autostart_fp),
     ("AutoStart No Front Panel (p2app)", autostart_nfp),
     ("P2App as a Service", p2app_service),
-    ("Toggle Dektop Power Popup", desktop_power_popup),
+    ("Toggle Desktop Power Popup", desktop_power_popup),
     ("Install G2 config.txt", g2_config),
     ("Install G2 7\" config.txt", g27_config),
     ("Install G2 Ultra 8\" config.txt", g2u8_config),
