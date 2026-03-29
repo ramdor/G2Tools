@@ -14,9 +14,48 @@ system_disabled="/etc/xdg/autostart/pwrkey.desktop.disabled"
 user_file="$user_home/.config/autostart/pwrkey.desktop"
 user_disabled="$user_home/.config/autostart/pwrkey.desktop.disabled"
 
-popup_enabled=false
 force_mode=""
 
+write_desktop_entry() {
+    local target_path="$1"
+    local owner_name="${2:-}"
+
+    mkdir -p "$(dirname "$target_path")"
+
+    cat > "$target_path" <<'EOF'
+[Desktop Entry]
+Name=Power Key Inhibit
+Comment=Inhibit the power key while desktop runs
+Exec=systemd-inhibit --what=handle-power-key gtk-nop
+Terminal=false
+Type=Application
+NoDisplay=true
+EOF
+
+    chmod 644 "$target_path"
+
+    if [ -n "$owner_name" ]; then
+        chown "$owner_name:$owner_name" "$target_path"
+    fi
+}
+
+set_popup_state() {
+    local target_state="$1"
+
+    if [ "$target_state" = "enable" ]; then
+        rm -f "$system_disabled" "$user_disabled"
+        write_desktop_entry "$system_file"
+        write_desktop_entry "$user_file" "$real_user"
+        echo "Popup Enabled - reboot to take effect."
+    else
+        rm -f "$system_file" "$user_file"
+        write_desktop_entry "$system_disabled"
+        write_desktop_entry "$user_disabled" "$real_user"
+        echo "Popup Disabled - reboot to take effect."
+    fi
+}
+
+popup_enabled=false
 if [ -f "$system_file" ] || [ -f "$user_file" ]; then
     popup_enabled=true
 fi
@@ -37,83 +76,12 @@ if [ $# -ge 1 ]; then
 fi
 
 if [ -n "$force_mode" ]; then
-    if [ "$force_mode" = "enable" ]; then
-        changed=false
-
-        if [ -f "$system_disabled" ]; then
-            mv "$system_disabled" "$system_file"
-            changed=true
-        fi
-
-        if [ -f "$user_disabled" ]; then
-            mkdir -p "$user_home/.config/autostart"
-            mv "$user_disabled" "$user_file"
-            changed=true
-        fi
-
-        if [ -f "$system_file" ] || [ -f "$user_file" ]; then
-            echo "Popup Enabled - reboot to take effect."
-        else
-            if [ "$changed" = true ]; then
-                echo "Popup Enabled - reboot to take effect."
-            else
-                echo "No pwrkey.desktop.disabled files found in either location."
-            fi
-        fi
-    else
-        changed=false
-
-        if [ -f "$system_file" ]; then
-            mv "$system_file" "$system_disabled"
-            changed=true
-        fi
-
-        if [ -f "$user_file" ]; then
-            mv "$user_file" "$user_disabled"
-            changed=true
-        fi
-
-        if [ -f "$system_disabled" ] || [ -f "$user_disabled" ]; then
-            echo "Popup Disabled - reboot to take effect."
-        else
-            if [ "$changed" = true ]; then
-                echo "Popup Disabled - reboot to take effect."
-            else
-                echo "No pwrkey.desktop files found in either location."
-            fi
-        fi
-    fi
-
+    set_popup_state "$force_mode"
     exit 0
 fi
 
 if [ "$popup_enabled" = true ]; then
-    if [ -f "$system_file" ]; then
-        mv "$system_file" "$system_disabled"
-    fi
-
-    if [ -f "$user_file" ]; then
-        mv "$user_file" "$user_disabled"
-    fi
-
-    echo "Popup Disabled - reboot to take effect."
+    set_popup_state "disable"
 else
-    changed=false
-
-    if [ -f "$system_disabled" ]; then
-        mv "$system_disabled" "$system_file"
-        changed=true
-    fi
-
-    if [ -f "$user_disabled" ]; then
-        mkdir -p "$user_home/.config/autostart"
-        mv "$user_disabled" "$user_file"
-        changed=true
-    fi
-
-    if [ "$changed" = true ]; then
-        echo "Popup Enabled - reboot to take effect."
-    else
-        echo "No pwrkey.desktop or pwrkey.desktop.disabled files found in either location."
-    fi
+    set_popup_state "enable"
 fi
