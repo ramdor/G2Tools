@@ -100,6 +100,11 @@ sudo chmod +x ~/github/G2Tools/p2app_service_undo.sh
 sudo ~/github/G2Tools/p2app_service_undo.sh
 """
 
+DESKTOP_POWER_POPUP = r"""
+sudo chmod +x ~/github/G2Tools/showDesktopShutdownPopup.sh
+sudo ~/github/G2Tools/showDesktopShutdownPopup.sh
+"""
+
 G2_CONFIG_TXT = r"""
 [ -d "/boot/firmware" ] && sudo cp ~/github/G2Tools/G2_config.txt /boot/firmware/config.txt || sudo cp ~/github/G2Tools/G2_config.txt /boot/config.txt
 echo Installed G2 config.txt
@@ -267,6 +272,10 @@ def p2app_service():
     print("PS2App as serivce button was clicked.")
     run_command_in_terminal(DESKTOP_AUTOSTART_DISABLE + P2APP_SERVICE)
 
+def desktop_power_popup():
+    print("Desktop Power Popup button was clicked.")
+    run_command_in_terminal(DESKTOP_POWER_POPUP)
+
 def g2_config():
     print("G2 config.txt button was clicked.")
     run_command_in_terminal(G2_CONFIG_TXT)
@@ -328,6 +337,7 @@ buttons = [
     ("AutoStart Front Panel (piHPSDR)", autostart_fp),
     ("AutoStart No Front Panel (p2app)", autostart_nfp),
     ("P2App as a Service", p2app_service),
+    ("Toggle Dektop Power Popup", desktop_power_popup),
     ("Install G2 config.txt", g2_config),
     ("Install G2 7\" config.txt", g27_config),
     ("Install G2 Ultra 8\" config.txt", g2u8_config),
